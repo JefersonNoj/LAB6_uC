@@ -3,8 +3,8 @@
 ; Autor:	Jeferson Noj
 ; Compilador:	pic-as (v2.30), MPLABX V5.40
 ;
-; Programa:	Aumento de PORTA cada segundo con TMR1
-; Hardware:	LEDs en PORTA
+; Programa:	Aumento de PORTA cada segundo con TMR1 y led intermitente con TMR2
+; Hardware:	LEDs en PORTA y LED en PORTB
 ;
 ; Creado: 28 feb, 2022
 ; Última modificación:  28 feb, 2022
@@ -39,6 +39,7 @@ reset_tmr1 MACRO TMR1_H, TMR1_L	 ; Esta es la forma correcta
 
 PSECT udata_bank0	    ; Memoria común
   tmr1_var:	DS 2	    ; Almacena el valor del PORTA
+  tmr2_var:	DS 1
 
 PSECT udata_shr		    ; Memoria compartida
   W_TEMP:	DS 1		
@@ -61,6 +62,8 @@ push:
 isr: 
     BTFSC   TMR1IF	    ; Evaluar bandera de interrupción de TMR0
     CALL    int_tmr1
+    BTFSC   TMR2IF
+    CALL    int_tmr2
 pop:			   
     SWAPF   STATUS_TEMP,0   ; Intercambiar nibbles de STATUS_TEMP y guardar en W
     MOVWF   STATUS	    ; Mover valor de W a registro STATUS
@@ -80,6 +83,21 @@ int_tmr1:
     CLRF    tmr1_var
     RETURN
 
+int_tmr2:
+    BCF	    TMR2IF  
+    INCF    tmr2_var
+    MOVF    tmr2_var, 0
+    SUBLW   10
+    BTFSS   STATUS, 2
+    GOTO    $+7
+    BTFSC   PORTB, 0
+    GOTO    $+3
+    BSF	    PORTB, 0
+    GOTO    $+2
+    BCF	    PORTB, 0
+    CLRF    tmr2_var
+    RETURN
+
 PSECT code, delta=2, abs
 ORG 100h		    ; Posición 0100h para el código
 
@@ -88,6 +106,7 @@ main:
     CALL    config_clk	    ; Configuración del reloj
     CALL    config_io
     CALL    config_tmr1
+    CALL    config_tmr2
     CALL    config_int
     BANKSEL PORTA
 
@@ -109,8 +128,10 @@ config_io:
     CLRF    ANSELH
     BANKSEL TRISA
     CLRF    TRISA	    ; PORTA como salida
+    BCF	    TRISB, 0
     BANKSEL PORTA
     CLRF    PORTA
+    CLRF    PORTB
     RETURN
 
 config_tmr1:
@@ -124,11 +145,27 @@ config_tmr1:
     reset_tmr1 0x0B, 0xDC		    
     RETURN
 
+config_tmr2:
+    BANKSEL T2CON
+    BSF	    T2CKPS1
+    BSF	    T2CKPS0
+    BSF	    TMR2ON
+    BSF	    TOUTPS3
+    BSF	    TOUTPS2
+    BSF	    TOUTPS1
+    BSF	    TOUTPS0
+    BANKSEL PR2
+    MOVLW   196
+    MOVWF   PR2
+    RETURN
+
 config_int:
     BANKSEL PIE1
     BSF	    TMR1IE
+    BSF	    TMR2IE
     BANKSEL INTCON  
     BSF	    GIE
     BSF	    PEIE
     BCF	    TMR1IF
+    BCF	    TMR2IF
     RETURN

@@ -13,9 +13,9 @@
 %PSECTS
 $build/default/production/mainL6.o
 resVect CODE 0 0 0 3 2 1
-code CODE 0 0 0 132 2 1
-intVect CODE 0 0 0 1D 2 1
-udata_bank0 BANK0 1 20 20 2 1 1
+code CODE 0 0 0 145 2 1
+intVect CODE 0 0 0 2C 2 1
+udata_bank0 BANK0 1 20 20 3 1 1
 udata_shr COMMON 1 70 70 2 1 1
 config CONFIG 4 2007 2007 2 2 1
 # %UNUSED Section
@@ -24,22 +24,22 @@ config CONFIG 4 2007 2007 2 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 22-6F 1
+RAM 23-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 22-6F 1
+BANK0 23-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 132-1FFF 2
-ENTRY 132-1FFF 2
+CONST 145-1FFF 2
+ENTRY 145-1FFF 2
 IDLOC 2000-2003 2
-CODE 132-1FFF 2
+CODE 145-1FFF 2
 COMMON 72-7F 1
 EEDATA 2100-21FF 2
-STRCODE 132-1FFF 2
-STRING 132-1FFF 2
+STRCODE 145-1FFF 2
+STRING 145-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -54,76 +54,108 @@ STRING 132-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/production/mainL6.o
-0 intVect CODE >56:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-4 intVect CODE >58:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-5 intVect CODE >59:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-6 intVect CODE >60:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-7 intVect CODE >62:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-8 intVect CODE >63:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+0 intVect CODE >57:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+4 intVect CODE >59:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+5 intVect CODE >60:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+6 intVect CODE >61:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+7 intVect CODE >63:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+8 intVect CODE >64:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
 9 intVect CODE >65:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
 A intVect CODE >66:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-B intVect CODE >67:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-C intVect CODE >68:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-D intVect CODE >69:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-E intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10 intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11 intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-12 intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-13 intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-14 intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-15 intVect CODE >74:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-16 intVect CODE >75:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-17 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-18 intVect CODE >77:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-19 intVect CODE >78:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-1A intVect CODE >79:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-1B intVect CODE >80:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-1C intVect CODE >81:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-0 resVect CODE >49:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-0 resVect CODE >51:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-2 resVect CODE >52:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-0 code CODE >84:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-100 code CODE >88:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-101 code CODE >89:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-102 code CODE >90:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-103 code CODE >91:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-104 code CODE >92:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-106 code CODE >96:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-107 code CODE >99:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-109 code CODE >100:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10A code CODE >101:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10B code CODE >102:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10C code CODE >103:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10D code CODE >104:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-10E code CODE >107:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-110 code CODE >108:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-111 code CODE >109:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-112 code CODE >110:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-114 code CODE >111:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-115 code CODE >112:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-117 code CODE >113:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-118 code CODE >114:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-119 code CODE >117:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11B code CODE >118:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11C code CODE >119:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11D code CODE >120:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11E code CODE >121:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-11F code CODE >122:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-120 code CODE >123:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-121 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-123 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-124 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-125 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-126 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-127 code CODE >124:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-128 code CODE >125:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-129 code CODE >128:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-12B code CODE >129:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-12C code CODE >130:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-12E code CODE >131:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-12F code CODE >132:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-130 code CODE >133:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
-131 code CODE >134:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+B intVect CODE >68:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+C intVect CODE >69:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+D intVect CODE >70:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+E intVect CODE >71:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+F intVect CODE >72:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+13 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+14 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+15 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+16 intVect CODE >76:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+17 intVect CODE >77:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+18 intVect CODE >78:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+19 intVect CODE >79:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1A intVect CODE >80:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1B intVect CODE >81:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1C intVect CODE >82:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1D intVect CODE >83:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1E intVect CODE >84:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+1F intVect CODE >87:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+20 intVect CODE >88:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+21 intVect CODE >89:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+22 intVect CODE >90:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+23 intVect CODE >91:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+24 intVect CODE >92:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+25 intVect CODE >93:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+26 intVect CODE >94:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+27 intVect CODE >95:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+28 intVect CODE >96:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+29 intVect CODE >97:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+2A intVect CODE >98:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+2B intVect CODE >99:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+0 resVect CODE >50:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+0 resVect CODE >52:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+2 resVect CODE >53:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+0 code CODE >102:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+100 code CODE >106:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+101 code CODE >107:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+102 code CODE >108:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+103 code CODE >109:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+104 code CODE >110:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+105 code CODE >111:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+107 code CODE >115:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+108 code CODE >118:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10A code CODE >119:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10B code CODE >120:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10C code CODE >121:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10D code CODE >122:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10E code CODE >123:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+10F code CODE >126:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+111 code CODE >127:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+112 code CODE >128:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+113 code CODE >129:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+115 code CODE >130:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+116 code CODE >131:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+117 code CODE >132:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+119 code CODE >133:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+11A code CODE >134:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+11B code CODE >135:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+11C code CODE >138:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+11E code CODE >139:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+11F code CODE >140:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+120 code CODE >141:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+121 code CODE >142:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+122 code CODE >143:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+123 code CODE >144:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+124 code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+126 code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+127 code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+128 code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+129 code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12A code CODE >145:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12B code CODE >146:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12C code CODE >149:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12E code CODE >150:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+12F code CODE >151:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+130 code CODE >152:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+131 code CODE >153:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+132 code CODE >154:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+133 code CODE >155:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+134 code CODE >156:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+135 code CODE >157:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+137 code CODE >158:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+138 code CODE >159:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+139 code CODE >160:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+13A code CODE >163:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+13C code CODE >164:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+13D code CODE >165:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+13E code CODE >166:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+140 code CODE >167:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+141 code CODE >168:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+142 code CODE >169:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+143 code CODE >170:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
+144 code CODE >171:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laboratorios\LAB6_PuC.X\mainL6.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -136,7 +168,7 @@ E intVect CODE >73:C:\Users\usuario\Desktop\UVG\Semestre5\PrograMicros\Laborator
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 132 0 ABS 0 - -
+__Hspace_0 145 0 ABS 0 - -
 __Hspace_1 72 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
@@ -195,7 +227,7 @@ __HintVect 0 0 ABS 0 intVect -
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-udata_bank0 1 20 20 2 1
+udata_bank0 1 20 20 3 1
 udata_shr 1 70 70 2 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
