@@ -11,6 +11,7 @@
 
 PROCESSOR 16F887
 #include <xc.inc>
+#include "macros.s"
 
 ; CONFIG1
   CONFIG  FOSC = INTRC_NOCLKOUT ; Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -28,18 +29,13 @@ PROCESSOR 16F887
   CONFIG  BOR4V = BOR40V        ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG  WRT = OFF             ; Flash Program Memory Self Write Enable bits (Write protection off)
 
-reset_tmr1 MACRO TMR1_H, TMR1_L	 ; Esta es la forma correcta
-    BANKSEL TMR1H
-    MOVLW   TMR1_H	    ; Literal a guardar en TMR1H
-    MOVWF   TMR1H	    ; Guardamos literal en TMR1H
-    MOVLW   TMR1_L	    ; Literal a guardar en TMR1L
-    MOVWF   TMR1L	    ; Guardamos literal en TMR1L
-    BCF	    TMR1IF	    ; Limpiamos bandera de int. TMR1
-    ENDM
 
 PSECT udata_bank0	    ; Memoria común
   tmr1_var:	DS 2	    ; Almacena el valor del PORTA
-  tmr2_var:	DS 1
+  selector:	DS 1
+  valor:	DS 1
+  nibbles:	DS 2
+  display:	DS 2
 
 PSECT udata_shr		    ; Memoria compartida
   W_TEMP:	DS 1		
@@ -60,7 +56,9 @@ push:
     SWAPF   STATUS, 0	    ; Intercambiar nibbles de registro STATUS y guardar en W
     MOVWF   STATUS_TEMP	    ; Mover valor de W a STATUS_TEMP
 isr: 
-    BTFSC   TMR1IF	    ; Evaluar bandera de interrupción de TMR0
+    BTFSC   T0IF	    ; Evaluar bandera de interrupción de TMR0
+    CALL    int_tmr0
+    BTFSC   TMR1IF
     CALL    int_tmr1
     BTFSC   TMR2IF
     CALL    int_tmr2
@@ -72,30 +70,36 @@ pop:
     RETFIE
 
 ;------ Subrutinas de Interrupción -----
+int_tmr0:
+    reset_tmr0
+    CLRF    PORTD
+    BTFSC   selector, 0
+    GOTO    display1
+    display0:
+	MOVF	display, 0
+	MOVWF	PORTC
+	BSF	PORTD, 0
+	BSF	selector, 0
+	RETURN
+    display1:
+	MOVF	display+1, 0
+	MOVWF	PORTC
+	BSF	PORTD, 1
+	BCF	selector, 0
+	RETURN
+
 int_tmr1:
-    reset_tmr1 0x0B, 0xDC  ; Reiniciamos TMR1 para 500ms
-    INCF    tmr1_var	   ; Incremento en PORTA
-    MOVF    tmr1_var, 0
-    SUBLW   2
-    BTFSS   STATUS, 2
-    GOTO    $+3 
+    reset_tmr1 0x85, 0xA3  ; Reiniciamos TMR1 para 500ms
     INCF    PORTA
-    CLRF    tmr1_var
     RETURN
 
 int_tmr2:
     BCF	    TMR2IF  
-    INCF    tmr2_var
-    MOVF    tmr2_var, 0
-    SUBLW   10
-    BTFSS   STATUS, 2
-    GOTO    $+7
-    BTFSC   PORTB, 0
+    BTFSC   PORTB, 4
     GOTO    $+3
-    BSF	    PORTB, 0
+    BSF	    PORTB, 4
     GOTO    $+2
-    BCF	    PORTB, 0
-    CLRF    tmr2_var
+    BCF	    PORTB, 4
     RETURN
 
 PSECT code, delta=2, abs
@@ -105,6 +109,7 @@ ORG 100h		    ; Posición 0100h para el código
 main:
     CALL    config_clk	    ; Configuración del reloj
     CALL    config_io
+    CALL    config_tmr0
     CALL    config_tmr1
     CALL    config_tmr2
     CALL    config_int
@@ -112,13 +117,37 @@ main:
 
 ;-------- LOOP RRINCIPAL --------
 loop:
+    MOVF    PORTA, 0
+    MOVWF   valor
+    CALL    separar_nibbles
+    CALL    config_display
     GOTO    loop		; Saltar al loop principal
+
+;-------- SUBRUTINAS -----------
+
+separar_nibbles:
+    MOVF    valor, 0
+    ANDLW   0x0F
+    MOVWF   nibbles
+    SWAPF   valor, 0
+    ANDLW   0x0F
+    MOVWF   nibbles+1
+    RETURN
+
+config_display:
+    MOVF    nibbles, 0
+    CALL    tabla
+    MOVWF   display
+    MOVF    nibbles+1, 0
+    CALL    tabla
+    MOVWF   display+1
+    RETURN
 
 config_clk:
     BANKSEL OSCCON
-    BSF	    IRCF2	    ; IRCF/110/4MHz (frecuencia de oscilación)
+    BCF	    IRCF2	    ; IRCF/011/500 kHz (frecuencia de oscilación)
     BSF	    IRCF1
-    BCF	    IRCF0
+    BSF	    IRCF0
     BSF	    SCS		    ; Reloj interno
     RETURN
 
@@ -128,10 +157,24 @@ config_io:
     CLRF    ANSELH
     BANKSEL TRISA
     CLRF    TRISA	    ; PORTA como salida
-    BCF	    TRISB, 0
+    BCF	    TRISB, 4
+    CLRF    TRISC
+    CLRF    TRISD
     BANKSEL PORTA
     CLRF    PORTA
     CLRF    PORTB
+    CLRF    PORTC
+    CLRF    PORTD
+    RETURN
+
+config_tmr0:
+    BANKSEL OPTION_REG
+    BCF	    T0CS
+    BCF	    PSA
+    BCF	    PS2		    ; Prescaler/010/1:8
+    BSF	    PS1
+    BCF	    PS0
+    reset_tmr0
     RETURN
 
 config_tmr1:
@@ -139,23 +182,23 @@ config_tmr1:
     BSF	    TMR1ON	    ; Encender TMR1
     BCF	    TMR1CS	    ; Configurar con reloj interno
     BCF	    T1OSCEN	    ; Apagar oscilador LP
-    BSF	    T1CKPS1	    ; Configurar prescaler 1:8
-    BSF	    T1CKPS0	    
+    BSF	    T1CKPS1	    ; Configurar prescaler 1:4
+    BCF	    T1CKPS0	    
     BCF	    TMR1GE	    ; TRM1 siempre contando 
-    reset_tmr1 0x0B, 0xDC		    
+    reset_tmr1 0x85, 0xA3		    
     RETURN
 
 config_tmr2:
     BANKSEL T2CON
-    BSF	    T2CKPS1
+    BSF	    T2CKPS1	    ; Prescaler/11/1:16
     BSF	    T2CKPS0
     BSF	    TMR2ON
-    BSF	    TOUTPS3
+    BSF	    TOUTPS3	    ; Postscaler/1111/1:16
     BSF	    TOUTPS2
     BSF	    TOUTPS1
     BSF	    TOUTPS0
     BANKSEL PR2
-    MOVLW   196
+    MOVLW   245
     MOVWF   PR2
     RETURN
 
@@ -166,6 +209,33 @@ config_int:
     BANKSEL INTCON  
     BSF	    GIE
     BSF	    PEIE
+    BSF	    T0IE
+    BCF	    T0IF
     BCF	    TMR1IF
     BCF	    TMR2IF
     RETURN
+
+ORG 200h		    ; Establecer posición para la tabla
+tabla:
+    CLRF    PCLATH	    ; Limpiar registro PCLATH
+    BSF	    PCLATH, 1	    ; Posicionar PC en 0x02xxh
+    ANDLW   0x0F	    ; AND entre W y literal 0x0F
+    ADDWF   PCL		    ; ADD entre W y PCL 
+    RETLW   00111111B	    ; 0	en 7 seg
+    RETLW   00000110B	    ; 1 en 7 seg
+    RETLW   01011011B	    ; 2 en 7 seg
+    RETLW   01001111B	    ; 3 en 7 seg
+    RETLW   01100110B	    ; 4 en 7 seg
+    RETLW   01101101B	    ; 5 en 7 seg
+    RETLW   01111101B	    ; 6 en 7 seg
+    RETLW   00000111B	    ; 7 en 7 seg
+    RETLW   01111111B	    ; 8 en 7 seg
+    RETLW   01101111B	    ; 9 en 7 seg
+    RETLW   01110111B	    ; 10 en 7 seg
+    RETLW   01111100B	    ; 11 en 7 seg
+    RETLW   00111001B	    ; 12 en 7 seg
+    RETLW   01011110B	    ; 13 en 7 seg
+    RETLW   01111001B	    ; 14 en 7 seg
+    RETLW   01110001B	    ; 15 en 7 seg
+
+END

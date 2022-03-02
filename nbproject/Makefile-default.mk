@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=mainL6.s
+SOURCEFILES_QUOTED_IF_SPACED=mainL6.s macros.s
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mainL6.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/mainL6.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mainL6.o ${OBJECTDIR}/macros.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/mainL6.o.d ${OBJECTDIR}/macros.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/mainL6.o
+OBJECTFILES=${OBJECTDIR}/mainL6.o ${OBJECTDIR}/macros.o
 
 # Source Files
-SOURCEFILES=mainL6.s
+SOURCEFILES=mainL6.s macros.s
 
 
 
@@ -103,6 +103,14 @@ ${OBJECTDIR}/mainL6.o: mainL6.s  nbproject/Makefile-${CND_CONF}.mk
 	mainL6.s \
 	 -D__DEBUG=1  -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
+${OBJECTDIR}/macros.o: macros.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/macros.o 
+	${MP_AS} -mcpu=PIC16F887 -c \
+	-o ${OBJECTDIR}/macros.o \
+	macros.s \
+	 -D__DEBUG=1  -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
 else
 ${OBJECTDIR}/mainL6.o: mainL6.s  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -110,6 +118,14 @@ ${OBJECTDIR}/mainL6.o: mainL6.s  nbproject/Makefile-${CND_CONF}.mk
 	${MP_AS} -mcpu=PIC16F887 -c \
 	-o ${OBJECTDIR}/mainL6.o \
 	mainL6.s \
+	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
+${OBJECTDIR}/macros.o: macros.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/macros.o 
+	${MP_AS} -mcpu=PIC16F887 -c \
+	-o ${OBJECTDIR}/macros.o \
+	macros.s \
 	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
 endif
