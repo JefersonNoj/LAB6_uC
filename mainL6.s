@@ -102,9 +102,9 @@ int_tmr1:
 int_tmr2:
     BCF	    TMR2IF	    ; Limpiar bandera de interrupción del TMR2
     BTFSC   PORTB, 4	    ; Evaluar estado del LED en RB4
-    GOTO    $+3		    ; Saltar a la tercera interrupción siguiente (apagar LED)
+    GOTO    $+3		    ; Saltar a la tercera instrucción siguiente (apagar LED)
     BSF	    PORTB, 4	    ; Encender LED en pin RB4
-    GOTO    $+2		    ; Saltar a la segunda interrupción siguiente (salir de subrutina)
+    GOTO    $+2		    ; Saltar a la segunda instrucción siguiente (salir de subrutina)
     BCF	    PORTB, 4	    ; Apagar LED en pin RB4
     RETURN
 
@@ -175,7 +175,7 @@ config_io:
     CLRF    TRISA	    ; PORTA como salida
     BCF	    TRISB, 4	    ; Pin RB4 como salida
     CLRF    TRISC	    ; PORTC como salida
-    CLRF    TRISD	    ; PORTC como salida
+    CLRF    TRISD	    ; PORTD como salida
     BANKSEL PORTA
     CLRF    PORTA	    ; Limpiar PORTA
     CLRF    PORTB	    ; Limpiar PORTB
